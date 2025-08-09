@@ -2,6 +2,8 @@
 let currentSlope = 1;
 let currentIntercept = 5;
 let plotlyInitialized = false;
+let isSlopeBeingAdjusted = false;
+let isInterceptBeingAdjusted = false;
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -24,8 +26,52 @@ function initializeApp() {
         updateDisplay();
     });
     
+    // Add mouse events for slope slider to track when it's being adjusted
+    slopeSlider.addEventListener('mousedown', function() {
+        isSlopeBeingAdjusted = true;
+        updateDisplay();
+    });
+    
+    slopeSlider.addEventListener('mouseup', function() {
+        isSlopeBeingAdjusted = false;
+        updateDisplay();
+    });
+    
+    // Also handle touch events for mobile
+    slopeSlider.addEventListener('touchstart', function() {
+        isSlopeBeingAdjusted = true;
+        updateDisplay();
+    });
+    
+    slopeSlider.addEventListener('touchend', function() {
+        isSlopeBeingAdjusted = false;
+        updateDisplay();
+    });
+    
     interceptSlider.addEventListener('input', function() {
         currentIntercept = parseFloat(this.value);
+        updateDisplay();
+    });
+    
+    // Add mouse events for intercept slider to track when it's being adjusted
+    interceptSlider.addEventListener('mousedown', function() {
+        isInterceptBeingAdjusted = true;
+        updateDisplay();
+    });
+    
+    interceptSlider.addEventListener('mouseup', function() {
+        isInterceptBeingAdjusted = false;
+        updateDisplay();
+    });
+    
+    // Also handle touch events for mobile
+    interceptSlider.addEventListener('touchstart', function() {
+        isInterceptBeingAdjusted = true;
+        updateDisplay();
+    });
+    
+    interceptSlider.addEventListener('touchend', function() {
+        isInterceptBeingAdjusted = false;
         updateDisplay();
     });
     
@@ -282,12 +328,33 @@ function updateGraph() {
         });
     }
     
+    // Add equation title annotation
+    const interceptSign = currentIntercept >= 0 ? '+' : '';
+    annotations.push({
+        text: `Linear Equation: y = <b style="color: ${isSlopeBeingAdjusted ? '#e67e22' : '#f39c12'}; font-weight: ${isSlopeBeingAdjusted ? 'bold' : 'normal'};">${formatNumber(currentSlope)}</b>x ${interceptSign} <b style="color: ${isInterceptBeingAdjusted ? '#c0392b' : '#e74c3c'}; font-weight: ${isInterceptBeingAdjusted ? 'bold' : 'normal'};">${formatNumber(currentIntercept)}</b>`,
+        x: 29,
+        y: 13,
+        xref: 'x',
+        yref: 'y',
+        showarrow: false,
+        font: {
+            size: 18,
+            color: '#2c3e50',
+            family: 'Arial, sans-serif'
+        },
+        bgcolor: 'rgba(255,255,255,0.9)',
+        bordercolor: '#ecf0f1',
+        borderwidth: 1,
+        borderpad: 8,
+        xanchor: 'right'
+    });
+    
     const traces = [lineTrace, interceptTrace, interceptLineTrace, angleArcTrace];
     
     const layout = {
         title: {
-            text: `Linear Equation: y = ${formatNumber(currentSlope)}x + ${formatNumber(currentIntercept)}`,
-            font: { size: 18, color: '#2c3e50' }
+            text: '',
+            font: { size: 18 }
         },
         xaxis: {
             title: 'x',

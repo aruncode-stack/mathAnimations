@@ -66,6 +66,8 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     flex-shrink: 0;
+    width: 75%;
+    margin: 0 auto;
 }
 
 /* Controls Section */
