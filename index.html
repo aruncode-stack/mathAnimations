@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Linear Equation Demo - y = mx + b</title>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.26.0/plotly.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interactive Linear Equation</h1>
+            <p class="subtitle">Explore how slope (m) and y-intercept (b) affect a straight line</p>
+        </header>
+
+        <main>
+            <!-- Graph -->
+            <div class="graph-row">
+                <div id="graph" class="graph-container"></div>
+            </div>
+
+            <!-- Bottom Row: Controls and Examples -->
+            <div class="bottom-row">
+                <!-- Controls -->
+                <div class="controls-section">
+                    <div class="control-group">
+                        <label for="slope-slider">Slope (m): <span id="slope-display">1</span></label>
+                        <input type="range" id="slope-slider" class="slider" 
+                               min="-5" max="5" step="0.1" value="1">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="intercept-slider">Y-intercept (b): <span id="intercept-display">5</span></label>
+                        <input type="range" id="intercept-slider" class="slider" 
+                               min="-10" max="10" step="0.5" value="5">
+                    </div>
+                </div>
+
+                <!-- Examples and Equation -->
+                <div class="examples-section">
+                    <div class="examples-grid">
+                        <button class="example-btn" data-slope="2" data-intercept="3">y = 2x + 3</button>
+                        <button class="example-btn" data-slope="-1" data-intercept="5">y = -x + 5</button>
+                        <button class="example-btn" data-slope="0.5" data-intercept="-2">y = 0.5x - 2</button>
+                        <button class="example-btn" data-slope="0" data-intercept="4">y = 4</button>
+                    </div>
+                    
+                    <!-- Current Equation Display -->
+                    <div class="equation-display">
+                        <span id="equation-text">y = 1x + 5</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Inspired by <a href="https://www.mathsisfun.com/equation_of_line.html" target="_blank">Math is Fun</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

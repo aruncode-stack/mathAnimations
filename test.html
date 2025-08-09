@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Plotly Loading</title>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.26.0/plotly.min.js"></script>
+</head>
+<body>
+    <h1>Testing Plotly.js Loading</h1>
+    <div id="test-graph" style="width: 600px; height: 400px; border: 1px solid #ccc;"></div>
+    <p id="status">Loading...</p>
+    
+    <script>
+        function testPlotly() {
+            const statusEl = document.getElementById('status');
+            
+            if (typeof Plotly === 'undefined') {
+                statusEl.innerHTML = '❌ Plotly failed to load. Check internet connection.';
+                statusEl.style.color = 'red';
+                return;
+            }
+            
+            statusEl.innerHTML = '✅ Plotly loaded successfully!';
+            statusEl.style.color = 'green';
+            
+            // Create a simple test graph
+            const x = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
+            const y = x.map(val => val * 2 + 1); // y = 2x + 1
+            
+            const trace = {
+                x: x,
+                y: y,
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: 'y = 2x + 1'
+            };
+            
+            const layout = {
+                title: 'Test Graph: y = 2x + 1',
+                xaxis: { title: 'x' },
+                yaxis: { title: 'y' }
+            };
+            
+            Plotly.newPlot('test-graph', [trace], layout);
+        }
+        
+        // Test when page loads
+        window.addEventListener('load', function() {
+            setTimeout(testPlotly, 500);
+        });
+    </script>
+</body>
+</html>
