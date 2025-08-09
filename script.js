@@ -86,13 +86,28 @@ function updateEquationText() {
 }
 
 function updateValueDisplays() {
-    document.getElementById('slope-display').textContent = formatNumber(currentSlope);
-    document.getElementById('intercept-display').textContent = formatNumber(currentIntercept);
-    
-    // Update tan display
+    // Update tracking values with tan display for slope
     const angleRadians = Math.atan(currentSlope);
     const angleDegrees = angleRadians * (180 / Math.PI);
-    document.getElementById('slope-tan-display').textContent = `= tan(${angleDegrees.toFixed(1)}°)`;
+    document.getElementById('slope-value-tracker').textContent = `${formatNumber(currentSlope)} = tan(${angleDegrees.toFixed(1)}°)`;
+    document.getElementById('intercept-value-tracker').textContent = formatNumber(currentIntercept);
+    
+    // Position tracking values above slider handles
+    positionSliderValues();
+}
+
+function positionSliderValues() {
+    const slopeSlider = document.getElementById('slope-slider');
+    const interceptSlider = document.getElementById('intercept-slider');
+    const slopeTracker = document.getElementById('slope-value-tracker');
+    const interceptTracker = document.getElementById('intercept-value-tracker');
+    
+    // Calculate positions based on slider value
+    const slopePercent = ((currentSlope - (-5)) / (5 - (-5))) * 100;
+    const interceptPercent = ((currentIntercept - (-10)) / (10 - (-10))) * 100;
+    
+    slopeTracker.style.left = `${slopePercent}%`;
+    interceptTracker.style.left = `${interceptPercent}%`;
 }
 
 function updateGraph() {
