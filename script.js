@@ -102,7 +102,13 @@ function updateEquationText() {
 function updateValueDisplays() {
     // Update tracking values with tan display for slope
     const angleRadians = Math.atan(currentSlope);
-    const angleDegrees = angleRadians * (180 / Math.PI);
+    let angleDegrees = angleRadians * (180 / Math.PI);
+    
+    // For negative slopes, convert to positive counter-clockwise angle (same as graph display)
+    if (currentSlope < 0) {
+        angleDegrees = 180 + angleDegrees; // Convert to positive angle
+    }
+    
     document.getElementById('slope-value-tracker').textContent = `${formatNumber(currentSlope)} = tan(${angleDegrees.toFixed(1)}°)`;
     document.getElementById('intercept-value-tracker').textContent = formatNumber(currentIntercept);
     
