@@ -50,39 +50,7 @@ function updateDisplay() {
 }
 
 function updateEquationText() {
-    const equationElement = document.getElementById('equation-text');
-    
-    // Format the equation nicely
-    let equationText;
-    if (currentSlope === 0) {
-        equationText = `y = ${formatNumber(currentIntercept)}`;
-    } else if (currentSlope === 1) {
-        if (currentIntercept === 0) {
-            equationText = `y = x`;
-        } else if (currentIntercept > 0) {
-            equationText = `y = x + ${formatNumber(currentIntercept)}`;
-        } else {
-            equationText = `y = x - ${formatNumber(Math.abs(currentIntercept))}`;
-        }
-    } else if (currentSlope === -1) {
-        if (currentIntercept === 0) {
-            equationText = `y = -x`;
-        } else if (currentIntercept > 0) {
-            equationText = `y = -x + ${formatNumber(currentIntercept)}`;
-        } else {
-            equationText = `y = -x - ${formatNumber(Math.abs(currentIntercept))}`;
-        }
-    } else {
-        if (currentIntercept === 0) {
-            equationText = `y = ${formatNumber(currentSlope)}x`;
-        } else if (currentIntercept > 0) {
-            equationText = `y = ${formatNumber(currentSlope)}x + ${formatNumber(currentIntercept)}`;
-        } else {
-            equationText = `y = ${formatNumber(currentSlope)}x - ${formatNumber(Math.abs(currentIntercept))}`;
-        }
-    }
-    
-    equationElement.textContent = equationText;
+    // Function removed since equation display element was removed
 }
 
 function updateValueDisplays() {
@@ -124,7 +92,7 @@ function updateGraph() {
     const xValues = [];
     const yValues = [];
     
-    for (let x = -15; x <= 15; x += 0.5) {
+    for (let x = -30; x <= 30; x += 0.5) {
         xValues.push(x);
         yValues.push(currentSlope * x + currentIntercept);
     }
@@ -231,8 +199,10 @@ function updateGraph() {
     const annotations = [];
     
     if (currentIntercept !== 0) {
-        // Y-intercept value label - position based on slope sign
-        const yInterceptX = currentSlope < 0 ? -2.5 : 2.5; // Left for negative slope, right for positive
+        // Y-intercept value label - position based on slope sign and intercept sign
+        const yInterceptX = currentIntercept < 0 ? 
+            (currentSlope < 0 ? 3.5 : -3) :  // Negative intercept: swap positions
+            (currentSlope < 0 ? -3 : 3.5);   // Positive intercept: original positions
         
         annotations.push({
             x: yInterceptX,
@@ -321,10 +291,11 @@ function updateGraph() {
         },
         xaxis: {
             title: 'x',
-            range: [-15, 15],
+            range: [-30, 30],
             gridcolor: '#ecf0f1',
             zerolinecolor: '#bdc3c7',
-            zerolinewidth: 2
+            zerolinewidth: 2,
+            dtick: 5
         },
         yaxis: {
             title: 'y',

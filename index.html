@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Interactive Linear Equation</h1>
+            <h1>Interactive Linear Equation (Straight Line)</h1>
             <p class="subtitle">Explore how slope (m) and y-intercept (b) affect a straight line</p>
         </header>
 
@@ -53,20 +53,24 @@
                     </div>
                 </div>
 
-                <!-- Examples and Equation -->
-                <div class="examples-section">
+                            <!-- Examples -->
+            <div class="examples-section">
+                <h3>Sample Line Equations</h3>
+                <div class="examples-container">
                     <div class="examples-grid">
                         <button class="example-btn" data-slope="2" data-intercept="3">y = 2x + 3</button>
                         <button class="example-btn" data-slope="-1" data-intercept="5">y = -x + 5</button>
                         <button class="example-btn" data-slope="0.5" data-intercept="-2">y = 0.5x - 2</button>
                         <button class="example-btn" data-slope="0" data-intercept="4">y = 4</button>
                     </div>
-                    
-                    <!-- Current Equation Display -->
-                    <div class="equation-display">
-                        <span id="equation-text">y = 1x + 5</span>
+                    <div class="examples-values">
+                        <div class="value-item">m = tan(63.4°), b = 3</div>
+                        <div class="value-item">m = tan(135.0°), b = 5</div>
+                        <div class="value-item">m = tan(26.6°), b = -2</div>
+                        <div class="value-item">m = tan(0.0°), b = 4</div>
                     </div>
                 </div>
+            </div>
             </div>
         </main>
 
