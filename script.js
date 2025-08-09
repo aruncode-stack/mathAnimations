@@ -262,7 +262,7 @@ function updateGraph() {
         
         // Position label below the x-axis - adjust based on slope sign
         const labelX = currentSlope < 0 ? xIntercept - 1 : xIntercept + 2; // Left for negative slope, right for positive
-        const labelY = -1.5; // Below the x-axis
+        const labelY = -2.0; // Below the x-axis
         
         annotations.push({
             x: labelX,
