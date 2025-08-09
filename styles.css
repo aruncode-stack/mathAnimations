@@ -82,6 +82,24 @@ main {
     border-left: 3px solid #3498db;
 }
 
+.control-group:first-child {
+    border-left-color: #f39c12;
+}
+
+.control-group:first-child label,
+.control-group:first-child .slider-labels {
+    color: #f39c12;
+}
+
+.control-group:nth-child(2) {
+    border-left-color: #e74c3c;
+}
+
+.control-group:nth-child(2) label,
+.control-group:nth-child(2) .slider-labels {
+    color: #e74c3c;
+}
+
 .control-group label {
     display: block;
     font-weight: bold;
@@ -98,6 +116,28 @@ main {
     border-radius: 3px;
     outline: none;
     cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+.control-group:first-child .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #f39c12 !important;
+}
+
+.control-group:first-child .slider::-webkit-slider-track {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #f39c12;
+    height: 6px;
+    border-radius: 3px;
+}
+
+.control-group:first-child .slider::-moz-range-track {
+    background: #f39c12;
+    height: 6px;
+    border-radius: 3px;
+    border: none;
 }
 
 .slider::-webkit-slider-thumb {
@@ -118,6 +158,51 @@ main {
     cursor: pointer;
     border: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.control-group:first-child .slider::-webkit-slider-thumb {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.control-group:first-child .slider::-moz-range-thumb {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.control-group:nth-child(2) .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e74c3c !important;
+}
+
+.control-group:nth-child(2) .slider::-webkit-slider-track {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e74c3c;
+    height: 6px;
+    border-radius: 3px;
+}
+
+.control-group:nth-child(2) .slider::-moz-range-track {
+    background: #e74c3c;
+    height: 6px;
+    border-radius: 3px;
+    border: none;
+}
+
+.control-group:nth-child(2) .slider::-webkit-slider-thumb {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.control-group:nth-child(2) .slider::-moz-range-thumb {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #7f8c8d;
+    margin-top: -0.2rem;
 }
 
 /* Graph Section */

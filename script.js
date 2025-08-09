@@ -88,6 +88,11 @@ function updateEquationText() {
 function updateValueDisplays() {
     document.getElementById('slope-display').textContent = formatNumber(currentSlope);
     document.getElementById('intercept-display').textContent = formatNumber(currentIntercept);
+    
+    // Update tan display
+    const angleRadians = Math.atan(currentSlope);
+    const angleDegrees = angleRadians * (180 / Math.PI);
+    document.getElementById('slope-tan-display').textContent = `= tan(${angleDegrees.toFixed(1)}°)`;
 }
 
 function updateGraph() {
